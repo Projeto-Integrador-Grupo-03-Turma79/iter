@@ -79,8 +79,10 @@ public class ViagemController {
 	@PutMapping("/atualizar")
 	public ResponseEntity<ViagemModel> put(@Valid @RequestBody ViagemModel viagem)
 	{
-		if(viagemRepository.existsById(viagem.getId()))
-		{
+		if(viagemRepository.existsById(viagem.getId())) {
+			
+			viagemService.calcularTempoViagem(viagem);
+			
 			if(veiculoRepository.existsById(viagem.getVeiculo().getId()) && usuarioRepository.existsById(viagem.getUsuario().getId()))
 				return ResponseEntity.status(HttpStatus.OK)
 						.body(viagemRepository.save(viagem));
