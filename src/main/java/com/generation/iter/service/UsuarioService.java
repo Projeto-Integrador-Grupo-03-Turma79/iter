@@ -18,15 +18,15 @@ import com.generation.iter.security.JwtService;
 
 @Service
 public class UsuarioService {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
-    private JwtService jwtService;
+	private JwtService jwtService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	public Optional<UsuarioModel> cadastrarUsuario(UsuarioModel usuario) {
 
@@ -36,66 +36,61 @@ public class UsuarioService {
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 
 		return Optional.of(usuarioRepository.save(usuario));
-	
+
 	}
 
 	public Optional<UsuarioModel> atualizarUsuario(UsuarioModel usuario) {
-		
-		if(usuarioRepository.findById(usuario.getId()).isPresent()) {
+
+		if (usuarioRepository.findById(usuario.getId()).isPresent()) {
 
 			Optional<UsuarioModel> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
 
-			if ( (buscaUsuario.isPresent()) && ( buscaUsuario.get().getId() != usuario.getId()))
+			if ((buscaUsuario.isPresent()) && (buscaUsuario.get().getId() != usuario.getId()))
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
 
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
 
 			return Optional.ofNullable(usuarioRepository.save(usuario));
-			
+
 		}
 
 		return Optional.empty();
-	
-	}	
+
+	}
 
 	public Optional<UsuarioLoginModel> autenticarUsuario(Optional<UsuarioLoginModel> usuarioLogin) {
-        
-       
-		var credenciais = new UsernamePasswordAuthenticationToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha());
-		
-        
+
+		var credenciais = new UsernamePasswordAuthenticationToken(usuarioLogin.get().getUsuario(),
+				usuarioLogin.get().getSenha());
+
 		Authentication authentication = authenticationManager.authenticate(credenciais);
-        
-       
+
 		if (authentication.isAuthenticated()) {
 
-          
 			Optional<UsuarioModel> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
-            
 			if (usuario.isPresent()) {
 
-                
-			   usuarioLogin.get().setId(usuario.get().getId());
-                usuarioLogin.get().setNome(usuario.get().getNome());
-                usuarioLogin.get().setToken(gerarToken(usuarioLogin.get().getUsuario()));
-                usuarioLogin.get().setSenha("");
-				
-                 
-			   return usuarioLogin;
-			
+				usuarioLogin.get().setId(usuario.get().getId());
+				usuarioLogin.get().setNome(usuario.get().getNome());
+				usuarioLogin.get().setToken(gerarToken(usuarioLogin.get().getUsuario()));
+				usuarioLogin.get().setSenha("");
+				usuarioLogin.get().setFoto(usuario.get().getFoto());
+
+				return usuarioLogin;
+
 			}
 
-        } 
-            
+		}
+
 		return Optional.empty();
 
-    }
+	}
 
 	private String criptografarSenha(String senha) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+
 		return encoder.encode(senha);
 
 	}

@@ -29,13 +29,11 @@ public class UsuarioModel {
 		@NotNull(message = "O Atributo Nome é Obrigatório!")
 		private String nome;
 		
-		
 		@Schema(example = "email@email.com.br")
 		@NotNull(message = "O Atributo Usuário é Obrigatório!")
 		@Email(message = "O Atributo Usuário deve ser um email válido!")
 		private String usuario;
 		
-
 		@NotBlank(message = "O Atributo Senha é Obrigatório!")
 		@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 		private String senha;
@@ -44,7 +42,8 @@ public class UsuarioModel {
 		@JsonIgnoreProperties("usuario")
 		private List<ViagemModel> viagem;
 		
-		
+		@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+		private String foto;
 
 		public Long getId() {
 			return id;
@@ -85,6 +84,13 @@ public class UsuarioModel {
 		public void setViagem(List<ViagemModel> viagem) {
 			this.viagem = viagem;
 		}
-		
+
+		public String getFoto() {
+			return foto;
+		}
+
+		public void setFoto(String foto) {
+			this.foto = foto;
+		}
 		
 }

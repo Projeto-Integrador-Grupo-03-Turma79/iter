@@ -42,7 +42,18 @@ public class VeiculoModel {
 	private String motorista;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "veiculo", cascade = CascadeType.REMOVE)
-	private List<ViagemModel> viagem;  
+	private List<ViagemModel> viagem;
+	
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+	private String fotoMotorista;
+
+	public String getFotoMotorista() {
+		return fotoMotorista;
+	}
+
+	public void setFotoMotorista(String fotoMotorista) {
+		this.fotoMotorista = fotoMotorista;
+	}
 
 	public Long getId() {
 		return id;
@@ -99,7 +110,5 @@ public class VeiculoModel {
 	public void setViagem(List<ViagemModel> viagem) {
 		this.viagem = viagem;
 	} 
-	
-	
 	
 }

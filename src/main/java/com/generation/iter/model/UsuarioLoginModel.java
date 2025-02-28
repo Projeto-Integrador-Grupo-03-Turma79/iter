@@ -7,6 +7,15 @@ public class UsuarioLoginModel {
 	private String usuario;
 	private String senha;
 	private String token;
+	private String foto;
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Long getId() {
 		return this.id;

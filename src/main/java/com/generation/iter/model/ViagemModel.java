@@ -1,6 +1,10 @@
 package com.generation.iter.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +33,12 @@ public class ViagemModel {
 	@NotNull(message = "O campo Preço é obrigatório!")
 	private Double preco;
 	
+	@NotNull(message= "O campo Hora da Partida é obrigatório!")
+	private LocalTime hora;
+	
+	@NotNull(message= "O campo Data da Partida é obrigatório!")
+	private LocalDate data;
+	
 	@NotNull(message = "O campo Distância é obrigatório!")
 	private Double distancia;
 	
@@ -43,8 +53,23 @@ public class ViagemModel {
 	@JsonIgnoreProperties("viagem")
 	private UsuarioModel usuario;
 	
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
 	private String tempoViagem;
-	
 	
 	public String getTempoViagem() {
 		return tempoViagem;
