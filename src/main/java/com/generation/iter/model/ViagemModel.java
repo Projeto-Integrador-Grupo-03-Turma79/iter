@@ -34,7 +34,7 @@ public class ViagemModel {
 	private Double preco;
 	
 	@NotNull(message= "O campo Hora da Partida é obrigatório!")
-	private LocalTime hora;
+	private String hora;
 	
 	@NotNull(message= "O campo Data da Partida é obrigatório!")
 	private LocalDate data;
@@ -53,11 +53,11 @@ public class ViagemModel {
 	@JsonIgnoreProperties("viagem")
 	private UsuarioModel usuario;
 	
-	public LocalTime getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalTime hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
