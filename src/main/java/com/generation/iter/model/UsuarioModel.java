@@ -45,7 +45,6 @@ public class UsuarioModel {
 		@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 		private String foto;
 		
-		@NotBlank(message = "O Atributo Celular não pode ser vazio!")
 		@Size(min = 8, max = 11, message = "O Atributo Telefone deve ser composto apenas por números e deve ter entre 8 e 11 dígitos")
 		private int celular;
 
