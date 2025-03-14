@@ -8,13 +8,13 @@ public class UsuarioLoginModel {
 	private String senha;
 	private String token;
 	private String foto;
-	private int celular;
+	private Long celular;
 
-	public int getCelular() {
+	public Long getCelular() {
 		return celular;
 	}
 
-	public void setCelular(int celular) {
+	public void setCelular(Long celular) {
 		this.celular = celular;
 	}
 

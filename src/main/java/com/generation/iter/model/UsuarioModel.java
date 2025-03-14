@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -45,14 +46,14 @@ public class UsuarioModel {
 		@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 		private String foto;
 		
-		@Size(min = 8, max = 11, message = "O Atributo Telefone deve ser composto apenas por números e deve ter entre 8 e 11 dígitos")
-		private int celular;
+		@Digits(integer = 11, fraction = 0)
+	    private Long celular;
 
-		public int getCelular() {
+		public Long getCelular() {
 			return celular;
 		}
 
-		public void setCelular(int celular) {
+		public void setCelular(Long celular) {
 			this.celular = celular;
 		}
 
