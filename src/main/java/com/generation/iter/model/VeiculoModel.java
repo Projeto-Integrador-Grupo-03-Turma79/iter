@@ -22,23 +22,23 @@ public class VeiculoModel {
 	private Long id;
 	
 	@NotBlank(message = "O atributo Modelo é obrigatório!")
-	@Size(min = 5, max = 50, message = "O atributo deve conter no mínimo 5 e no máximo 50 caracteres")
+	@Size(min = 2, max = 50, message = "O atributo deve conter no mínimo 2 e no máximo 50 caracteres")
 	private String modelo;
 	
 	@NotBlank(message = "O atributo Marca é obrigatório!")
-	@Size(min = 5, max = 50, message = "O atributo deve conter no mínimo 5 e no máximo 50 caracteres")
+	@Size(min = 2, max = 50, message = "O atributo deve conter no mínimo 2 e no máximo 50 caracteres")
 	private String marca;
 	
 	@NotBlank(message = "O atributo Cor é obrigatório!")
-	@Size(min = 4, max = 50, message = "O atributo deve conter no mínimo 5 e no máximo 50 caracteres")
+	@Size(min = 2, max = 50, message = "O atributo deve conter no mínimo 2 e no máximo 50 caracteres")
 	private String cor;
 	
 	@NotBlank(message = "O atributo Placa é obrigatório!")
-	@Size(min = 7, max = 7, message = "O atributo deve conter no mínimo 5 e no máximo 50 caracteres")
+	@Size(min = 7, max = 7, message = "O atributo deve conter 7 caracteres")
 	private String placa;
 	
 	@NotBlank(message = "O atributo Motorista é obrigatório!")
-	@Size(min = 5, max = 50, message = "O atributo deve conter no mínimo 5 e no máximo 50 caracteres")
+	@Size(min = 2, max = 50, message = "O atributo deve conter no mínimo 2 e no máximo 50 caracteres")
 	private String motorista;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "veiculo", cascade = CascadeType.REMOVE)

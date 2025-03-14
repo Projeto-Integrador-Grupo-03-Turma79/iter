@@ -68,6 +68,7 @@ public class ViagemController {
 	{
 		if(veiculoRepository.existsById(viagem.getVeiculo().getId()) && usuarioRepository.existsById(viagem.getUsuario().getId())) {
 			
+			viagemService.calcularVelMedia(viagem);
 			viagemService.calcularTempoViagem(viagem);
 			
 			return ResponseEntity.status(HttpStatus.CREATED)
@@ -81,6 +82,7 @@ public class ViagemController {
 	{
 		if(viagemRepository.existsById(viagem.getId())) {
 			
+			viagemService.calcularVelMedia(viagem);
 			viagemService.calcularTempoViagem(viagem);
 			
 			if(veiculoRepository.existsById(viagem.getVeiculo().getId()) && usuarioRepository.existsById(viagem.getUsuario().getId()))

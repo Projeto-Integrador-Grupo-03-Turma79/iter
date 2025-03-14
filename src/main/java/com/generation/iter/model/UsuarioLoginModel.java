@@ -8,6 +8,15 @@ public class UsuarioLoginModel {
 	private String senha;
 	private String token;
 	private String foto;
+	private int celular;
+
+	public int getCelular() {
+		return celular;
+	}
+
+	public void setCelular(int celular) {
+		this.celular = celular;
+	}
 
 	public String getFoto() {
 		return foto;

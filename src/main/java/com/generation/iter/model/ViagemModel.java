@@ -1,7 +1,6 @@
 package com.generation.iter.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,10 +40,7 @@ public class ViagemModel {
 	
 	@NotNull(message = "O campo Distância é obrigatório!")
 	private Double distancia;
-	
-	@NotNull(message = "O campo Velocidade Media é obrigatório!")
-	private Double velMedia;
-	
+		
 	@ManyToOne
 	@JsonIgnoreProperties("viagem")
 	private VeiculoModel veiculo;
@@ -52,6 +48,10 @@ public class ViagemModel {
 	@ManyToOne
 	@JsonIgnoreProperties("viagem")
 	private UsuarioModel usuario;
+	
+	private Double velMedia;
+	
+	private String tempoViagem;
 	
 	public String getHora() {
 		return hora;
@@ -68,8 +68,6 @@ public class ViagemModel {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-
-	private String tempoViagem;
 	
 	public String getTempoViagem() {
 		return tempoViagem;
